@@ -1,0 +1,18 @@
+{
+  "name": "myflix_client3",
+  "version": "1.0.0",
+  "description": "client side to the RESTful API built previously",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JNicholas54/myFlix_client3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JNicholas54/myFlix_client3/issues"
+  },
+  "homepage": "https://github.com/JNicholas54/myFlix_client3#readme"
+}
