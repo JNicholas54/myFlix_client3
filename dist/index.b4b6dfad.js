@@ -27291,6 +27291,7 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([]);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
+            className: "my-flix",
             children: "Welcome to myFlix and Chill, fool!"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",

@@ -5,7 +5,7 @@ export const MainView = () => {
 
     return (
         <div>
-            <h1>Welcome to myFlix and Chill, fool!</h1>
+            <h1 className="my-flix">Welcome to myFlix and Chill, fool!</h1>
         </div>
     );
 };
