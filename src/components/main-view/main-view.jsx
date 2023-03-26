@@ -1,12 +1,125 @@
 import { useState } from "react";
-import { BookCard } from "../book-card/book-card";
+import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
+
 
 export const MainView = () => {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies] = useState([
+        {
+            _id: "633e21c719c1bf1889036e49",
+            Title: 'Good Will Hunting',
+            Story: 'Will Hunting, a janitor at MIT, has a gift for mathematics but needs help from a psychologist to find direction in his life.',
+            Genre: 'Drama',
+            Director: 'Gus Van Sant',
+            Stars: 'Matt Damon, Robin Williams, Ben Affleck, Stellan Skarsgård, Minnie Driver',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BOTI0MzcxMTYtZDVkMy00NjY1LTgyMTYtZmUxN2M3NmQ2NWJhXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f55bc19c1bf1889036e4a",
+            Title: 'A Few Good Men',
+            Story: 'When cocky military lawyer Lt. Daniel Kaffee and his co-counsel, Lt. Cmdr. JoAnne Galloway, are assigned to a murder case, they uncover a hazing ritual that could implicate high-ranking officials such as shady Col. Nathan Jessep.',
+            Genre: 'Drama',
+            Director: 'Rob Reiner',
+            Stars: 'Tom Cruise, Jack Nicholson, Demi Moore, Kevin Bacon, Kiefer Sutherland',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BMmRlZDQ1MmUtMzE2Yi00YTkxLTk1MGMtYmIyYWQwODcxYzRlXkEyXkFqcGdeQXVyNTI4MjkwNjA@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f591c19c1bf1889036e4b",
+            Title: 'My Cousin Vinny',
+            Story: 'Two New Yorkers accused of murder in rural Alabama while on their way back to college call in the help of one of their cousins, a loudmouth lawyer with no trial experience.',
+            Genre: 'Comedy',
+            Director: 'Johnathan Lynn',
+            Stars: 'Joe Pesci, Marisa Tomei, Ralph Macchio',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BMTQxNDYzMTg1M15BMl5BanBnXkFtZTgwNzk4MDgxMTE@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f5ad319c1bf1889036e4c",
+            Title: 'Cast Away',
+            Story: 'A FedEx executive undergoes a physical and emotional transformation after crash landing on a deserted island.',
+            Genre: 'Adventure',
+            Director: 'Robert Zemeckis',
+            Stars: 'Tom Hanks, Helen Hunt, Paul Sanchez',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BN2Y5ZTU4YjctMDRmMC00MTg4LWE1M2MtMjk4MzVmOTE4YjkzXkEyXkFqcGdeQXVyNTc1NTQxODI@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f5c2119c1bf1889036e4d",
+            Title: 'A Nightmare on Elm Street',
+            Story: 'Teenager Nancy Thompson must uncover the dark truth concealed by her parents after she and her friends become targets of the spirit of a serial killer with a bladed glove in their dreams, in which if they die, it kills them in real life.',
+            Genre: 'Horror',
+            Director: 'Wes Craven',
+            Stars: 'Heather Langenkamp, Johnny Depp, Robert Englund',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BNzFjZmM1ODgtMDBkMS00NWFlLTg2YmUtZjc3ZTgxMjE1OTI2L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f5d6319c1bf1889036e4e",
+            Title: 'Scream 2',
+            Story: 'Two years after the first series of murders, as Sidney acclimates to college life, someone donning the Ghostface costume begins a new string of killings.',
+            Genre: 'Horror',
+            Director: 'Wes Craven',
+            Stars: 'Neve Campbell, Courteney Cox, David Arquette',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BMTIxNTMzNzYtNzA3NC00MzgwLTlhNGYtMDEyYTNlZjcwZTNiXkEyXkFqcGdeQXVyNDAxNjkxNjQ@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f61f43d2400bbc5625cf6",
+            Title: 'A Beautiful Mind',
+            Story: 'After John Nash, a brilliant but asocial mathematician, accepts secret work in cryptography, his life takes a turn for the nightmarish.',
+            Genre: 'Drama',
+            Director: 'Ron Howard',
+            Stars: 'Russel Crowe, Ed Harris, Jennifer Connelly',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BMzcwYWFkYzktZjAzNC00OGY1LWI4YTgtNzc5MzVjMDVmNjY0XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+              _id: "633f62f23d2400bbc5625cf7",
+            Title: 'Remember the Titans',
+            Story: 'The true story of a newly appointed African-American coach and his high school team on their first season as a racially integrated unit.',
+            Genre: 'Drama',
+            Director: 'Boaz Yakin',
+            Stars: 'Denzel Washington, Will Patton, Wood Harris',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BYThkMzgxNjEtMzFiOC00MTI0LWI5MDItNDVmYjA4NzY5MDQ2L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f646a3d2400bbc5625cf8",
+            Title: 'Jurassic Park',
+            Story: "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose",
+            Genre: 'Action',
+            Director: 'Steven Speilberg',
+            Stars: 'Sam Worthington, Zoe Saldana, Siguorney Weaver',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_UX67_CR0,0,67,98_AL_.jpg'
+          },
+          {
+            _id: "633f66483d2400bbc5625cf9",
+            Title: 'Avatar',
+            Story: 'A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.',
+            Genre: 'Fantasy',
+            Director: 'James Cameron',
+            Stars: 'Sam Worthington, Zoe Saldana, Siguorney Weaver',
+            ImgURL: 'https://m.media-amazon.com/images/M/MV5BNjA3NGExZDktNDlhZC00NjYyLTgwNmUtZWUzMDYwMTZjZWUyXkEyXkFqcGdeQXVyMTU1MDM3NDk0._V1_UX67_CR0,0,67,98_AL_.jpg'
+          }
+    ]);
+
+    const [selectedMovie, setSelectedMovie] = useState(null);
+
+    if(selectedMovie) {
+        return (
+            <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
+        );
+    }
+
+    if (movies.length === 0) {
+        return <div>This list is empty!</div>;
+    }
 
     return (
         <div>
-            <h1 className="my-flix">Welcome to myFlix and Chill, fool!</h1>
+            {movies.map((movie) => (
+                <MovieCard
+                    key={movie.id}
+                    movie={movie} // the left most movie is the name of the prop
+                    onMovieClick={(newSelectedMovie) => {
+                        setSelectedMovie(newSelectedMovie);
+                    }}
+                />
+            ))}
         </div>
     );
 };
@@ -134,7 +247,7 @@ export const MainView = () => {
     Name: 'Drama',
     Description: 'In film and television, drama is a category or genre of narrative fiction (or semi-fiction) intended to be more serious than humorous in tone.'
   },
-  Directors: {
+  Director: {
     Name: 'Boaz Yakin',
     Bio: 'Boaz Yakin was born in 1966 in New York City, New York, USA. He is a writer and producer, known for Fresh (1994), Remember the Titans (2000) and The Harder They Fall (2021).',
     dob: 'June 20, 1966'
