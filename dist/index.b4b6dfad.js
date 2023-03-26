@@ -27285,6 +27285,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
+var _bookCard = require("../book-card/book-card");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -27295,12 +27296,12 @@ const MainView = ()=>{
             children: "Welcome to myFlix and Chill, fool!"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 8,
+            lineNumber: 9,
             columnNumber: 13
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 7,
+        lineNumber: 8,
         columnNumber: 9
     }, undefined);
 }; //============================ BELOW ARE THE MOVIES AND USERS FROM MY DATABASE ============================
@@ -27529,7 +27530,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"iwmME","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq","react":"21dqq"}],"iwmME":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"iwmME","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq","react":"21dqq","../book-card/book-card":"8FC36"}],"iwmME":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27559,6 +27560,35 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["6SU3h","kW111","d8Dch"], "d8Dch", "parcelRequireafd1")
+},{}],"8FC36":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$1994 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$1994.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BookCard", ()=>BookCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const BookCard = ()=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "insert title"
+    }, void 0, false, {
+        fileName: "src/components/book-card/book-card.jsx",
+        lineNumber: 2,
+        columnNumber: 12
+    }, undefined);
+};
+_c = BookCard;
+var _c;
+$RefreshReg$(_c, "BookCard");
+
+  $parcel$ReactRefreshHelpers$1994.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"iwmME","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq"}]},["6SU3h","kW111","d8Dch"], "d8Dch", "parcelRequireafd1")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
