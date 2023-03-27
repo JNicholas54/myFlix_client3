@@ -142,9 +142,9 @@
       this[globalName] = mainExports;
     }
   }
-})({"6SU3h":[function(require,module,exports) {
-var Refresh = require("9b7d6beae3e22467");
-var ErrorOverlay = require("328ab176a34cd941");
+})({"1xC6H":[function(require,module,exports) {
+var Refresh = require("73df2197735fb574");
+var ErrorOverlay = require("2ff70ea7bc0c0073");
 Refresh.injectIntoGlobalHook(window);
 window.$RefreshReg$ = function() {};
 window.$RefreshSig$ = function() {
@@ -163,11 +163,11 @@ window.addEventListener("parcelhmraccept", ()=>{
     ErrorOverlay.dismissRuntimeErrors();
 });
 
-},{"9b7d6beae3e22467":"33F11","328ab176a34cd941":"c6btx"}],"33F11":[function(require,module,exports) {
+},{"73df2197735fb574":"786KC","2ff70ea7bc0c0073":"1dldy"}],"786KC":[function(require,module,exports) {
 "use strict";
-module.exports = require("40ceca800b5e0327");
+module.exports = require("b861fc922a35fc39");
 
-},{"40ceca800b5e0327":"53YG6"}],"53YG6":[function(require,module,exports) {
+},{"b861fc922a35fc39":"hdge7"}],"hdge7":[function(require,module,exports) {
 /** @license React v0.9.0
  * react-refresh-runtime.development.js
  *
@@ -627,8 +627,8 @@ module.exports = require("40ceca800b5e0327");
     exports.setSignature = setSignature;
 })();
 
-},{}],"c6btx":[function(require,module,exports) {
-var process = require("c6ea9409cd3629dc");
+},{}],"1dldy":[function(require,module,exports) {
+var process = require("6312b242dca00b00");
 !function(e, t) {
     module.exports = t();
 }(window, function() {
@@ -2358,7 +2358,7 @@ var process = require("c6ea9409cd3629dc");
     ]);
 });
 
-},{"c6ea9409cd3629dc":"d5jf4"}],"d5jf4":[function(require,module,exports) {
+},{"6312b242dca00b00":"d5jf4"}],"d5jf4":[function(require,module,exports) {
 // shim for using process in browser
 var process = module.exports = {};
 // cached from whatever global is present so that test runners that stub it
@@ -2503,7 +2503,7 @@ process.umask = function() {
     return 0;
 };
 
-},{}],"kW111":[function(require,module,exports) {
+},{}],"7a1Sg":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -2955,7 +2955,7 @@ $RefreshReg$(_c, "MyFlixApplication");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq","./components/main-view/main-view":"4gflv"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./components/main-view/main-view":"4gflv"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("69492c9a0fb88e5b");
 
@@ -27140,9 +27140,9 @@ module.exports = require("6297cc6ca9e8dd93");
     /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
 })();
 
-},{}],"lJZlQ":[function() {},{}],"8Zwsq":[function(require,module,exports) {
+},{}],"lJZlQ":[function() {},{}],"km3Ru":[function(require,module,exports) {
 "use strict";
-var Refresh = require("6786629d5453f9b");
+var Refresh = require("f513eb551ec08678");
 function debounce(func, delay) {
     {
         let timeout = undefined;
@@ -27273,7 +27273,7 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"6786629d5453f9b":"33F11"}],"4gflv":[function(require,module,exports) {
+},{"f513eb551ec08678":"786KC"}],"4gflv":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$f7a6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27640,7 +27640,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"iwmME","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27672,7 +27672,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"iwmME","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq"}],"iwmME":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -27820,6 +27820,6 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"iwmME","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"8Zwsq"}]},["6SU3h","kW111","d8Dch"], "d8Dch", "parcelRequireafd1")
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","7a1Sg","d8Dch"], "d8Dch", "parcelRequireafd1")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
