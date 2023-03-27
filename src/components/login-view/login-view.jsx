@@ -13,7 +13,7 @@ export const LoginView = ({ onLoggedIn}) => {
         };
 
         // fetch("https://guarded-wave-99547.herokuapp.com/users")
-        fetch("http://localhost:8080/users", {
+        fetch("http://localhost:8080/users", { //this might need set to /login? 
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -31,8 +31,15 @@ export const LoginView = ({ onLoggedIn}) => {
             .catch((e) => {
                 alert("Somerthing went wrong with the login");
             });
-    }
-            
+
+    if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        onLoggedIn(data.user, data.token);
+    } else {
+        alert("No such user");
+    };
+};
 
     return (
         <form onSubmit={handleSubmit}>
