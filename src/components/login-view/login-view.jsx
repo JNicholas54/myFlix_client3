@@ -8,21 +8,31 @@ export const LoginView = ({ onLoggedIn}) => {
         event.preventDefault();
 
         const data = {
-            access: username,
-            secret: password
+            Username: username,
+            Password: password
         };
 
+        // fetch("https://guarded-wave-99547.herokuapp.com/users")
         fetch("http://localhost:8080/users", {
             method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(data)
-        }).then((response) => {
-            if (response.ok) {
-                onLoggedIn(username);
-            } else {
-                alert("Login failed, try again fool");
-            }
-        });
+            }).then((response) => response.json())
+            .then((data) => {
+                console.log("Login response: ", data);
+                if(data.user) {
+                    onLoggedIn(data.user, data.token);
+                } else {
+                    alert("No such user");
+                }
+            })
+            .catch((e) => {
+                alert("Somerthing went wrong with the login");
+            });
     }
+            
 
     return (
         <form onSubmit={handleSubmit}>
