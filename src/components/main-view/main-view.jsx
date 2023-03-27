@@ -1,13 +1,30 @@
 import { useState } from "react"; // useState is a hook that allows you to add a state variable to your component
-// import { useEffect } from "react"; // useEffect is a hook that runs a callback function when any of its dependencies change
+import { useEffect } from "react"; // useEffect is a hook that runs a callback function when any of its dependencies change
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-
+import PropTypes from "prop-types"; //as props transmit data between components, proptypes validates the data types based on the apps config
 
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
 
     const [selectedMovie, setSelectedMovie] = useState(null);
+
+    useEffect(() => {
+      fetch("https://guarded-wave-99547.herokuapp.com/movies")
+        .then((response) => response.json())
+        .then((data) => {
+          const moviesFromAPI = data.docs.map((doc) => {
+            return {
+              id: doc.key,
+              title: doc.title,
+              image: '#',
+              director: doc.director_name?.[0]
+            };
+          });
+          
+          setMovies(moviesFromAPI);
+      });
+    }, []); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
 
     if(selectedMovie) {
         return (

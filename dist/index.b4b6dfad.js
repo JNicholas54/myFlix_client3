@@ -27285,7 +27285,6 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react"); // useState is a hook that allows you to add a state variable to your component
-// import { useEffect } from "react"; // useEffect is a hook that runs a callback function when any of its dependencies change
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
