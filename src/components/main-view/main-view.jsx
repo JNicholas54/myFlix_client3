@@ -16,16 +16,16 @@ export const MainView = () => {
       fetch("http://localhost:8080/login")
         .then((response) => response.json())
         .then((data) => {
-          const moviesFromAPI = data.docs.map((doc) => {
+          const moviesFromApi = data.docs.map((doc) => {
             return {
               id: doc.key,
               title: doc.title,
-              image: '#',
+              image: doc.ImgURL, // I'm not sure if "doc.ImgURL" is the correct input here
               director: doc.director_name?.[0]
             };
           });
           
-          setMovies(moviesFromAPI);
+          setMovies(moviesFromApi);
       });
     }, []); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
 
