@@ -10,28 +10,33 @@ export const MainView = () => {
     const [movies, setMovies] = useState([]);
     const [user, setUser] = useState(null);
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [token, setToken] = useState(null);
 
     useEffect(() => {
-      //fetch("https://guarded-wave-99547.herokuapp.com/movies")
-      fetch("http://localhost:8080/users")
+      if (!token) {
+        return;
+      }
+
+      //fetch("http://localhost:8080/users")
+      fetch("https://guarded-wave-99547.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
         .then((response) => response.json())
         .then((data) => {
-          const moviesFromApi = data.docs.map((doc) => {
-            return {
-              id: doc.key,
-              title: doc.title,
-              image: doc.ImgURL, // I'm not sure if "doc.ImgURL" is the correct input here
-              director: doc.director_name?.[0]
-            };
-          });
-          
-          setMovies(moviesFromApi);
+          console.log(data);
       });
-    }, []); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
+    }, [token]); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
 
     if (!user) {
-      return <LoginView onLoggedIn={(user) => setUser(user)} />;
-    }
+      return (
+        <LoginView 
+          onLoggedIn={(user, token) => {
+            setUser(user);
+            setToken(token);
+          }} 
+          />
+        );
+      }
 
     if(selectedMovie) {
         return (
@@ -54,6 +59,7 @@ export const MainView = () => {
                     }}
                 />
             ))}
+        <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>   
         </div>
     );
 };
