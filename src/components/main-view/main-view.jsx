@@ -13,7 +13,7 @@ export const MainView = () => {
 
     useEffect(() => {
       //fetch("https://guarded-wave-99547.herokuapp.com/movies")
-      fetch("http://localhost:8080/login")
+      fetch("http://localhost:8080/users")
         .then((response) => response.json())
         .then((data) => {
           const moviesFromApi = data.docs.map((doc) => {
@@ -30,7 +30,7 @@ export const MainView = () => {
     }, []); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
 
     if (!user) {
-      return <LoginView />
+      return <LoginView onLoggedIn={(user) => setUser(user)} />;
     }
 
     if(selectedMovie) {
