@@ -19,6 +19,7 @@ export const SignupView = () => {
     };
 
     fetch("https://guarded-wave-99547.herokuapp.com/users", {
+      //fetch("https://localhost:8080/users", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

@@ -18,8 +18,8 @@ export const MainView = () => {
     useEffect(() => {
       if (!token) return;
       
-      //fetch("http://localhost:8080/users")
       fetch("https://guarded-wave-99547.herokuapp.com/movies", {
+        //fetch("http://localhost:8080/movies", {
         headers: { Authorization: `Bearer ${token}` }
       })
         .then((response) => response.json())
