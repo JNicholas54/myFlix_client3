@@ -1,37 +1,52 @@
+import React from "react";
 import { useState } from "react"; // useState is a hook that allows you to add a state variable to your component
 import { useEffect } from "react"; // useEffect is a hook that runs a callback function when any of its dependencies change
 
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
+import { SignupView } from "../signup-view/signup-view";
 import PropTypes from "prop-types"; //as props transmit data between components, proptypes validates the data types based on the apps config
 
 export const MainView = () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(storedUser? storedUser : null);
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [token, setToken] = useState(storedToken? storedToken : null);
 
     useEffect(() => {
-      //fetch("https://guarded-wave-99547.herokuapp.com/movies")
-      fetch("http://localhost:8080/login")
+      if (!token) return;
+      
+      fetch("https://guarded-wave-99547.herokuapp.com/movies", {
+        //fetch("http://localhost:8080/movies", {
+        headers: { Authorization: `Bearer ${token}` }
+      })
         .then((response) => response.json())
-        .then((data) => {
-          const moviesFromApi = data.docs.map((doc) => {
-            return {
-              id: doc.key,
-              title: doc.title,
-              image: doc.ImgURL, // I'm not sure if "doc.ImgURL" is the correct input here
-              director: doc.director_name?.[0]
-            };
-          });
-          
-          setMovies(moviesFromApi);
+        .then((movies) => {
+          setMovies(movies);
       });
-    }, []); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
+    }, [token]); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
 
     if (!user) {
-      return <LoginView />
-    }
+      return (
+        <>
+        Login:
+          <LoginView 
+            onLoggedIn={(user, token) => {
+              setUser(user);
+              setToken(token);
+            }} 
+          />
+          <hr></hr>
+          OR
+          <hr></hr>
+          Register:
+          <SignupView />
+        </>
+        );
+      }
 
     if(selectedMovie) {
         return (
@@ -54,6 +69,7 @@ export const MainView = () => {
                     }}
                 />
             ))}
+        <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>   
         </div>
     );
 };
