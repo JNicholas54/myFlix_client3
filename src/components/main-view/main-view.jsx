@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react"; // useState is a hook that allows you to add a state variable to your component
 import { useEffect } from "react"; // useEffect is a hook that runs a callback function when any of its dependencies change
 
@@ -11,9 +12,9 @@ export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(storedUser? storedUser : null);
     const [selectedMovie, setSelectedMovie] = useState(null);
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState(storedToken? storedToken : null);
 
     useEffect(() => {
       if (!token) return;
