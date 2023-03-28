@@ -2,5 +2,8 @@ node_modules
 .cache
 .parcel-cache
 dist/index.b4b6dfad.js
+<<<<<<< HEAD
 dist/index.b4b6dfad.js
+=======
+>>>>>>> 3.5_forms
 dist/index.b4b6dfad.js.map
