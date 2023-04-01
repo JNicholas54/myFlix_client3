@@ -60,7 +60,7 @@ export const MainView = () => {
         <div>
             {movies.map((movie) => (
                 <MovieCard
-                    key={movie.id}
+                    key={movie._id}
                     movie={movie} // the left most movie is the name of the prop
                     onMovieClick={(newSelectedMovie) => {
                         setSelectedMovie(newSelectedMovie);
