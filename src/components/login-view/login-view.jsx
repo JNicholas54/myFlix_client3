@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const LoginView = ({ onLoggedIn }) => {
     const [username, setUsername] = useState("");
@@ -23,7 +23,6 @@ export const LoginView = ({ onLoggedIn }) => {
         }).then((response) => response.json())
         .then((data) => {
             console.log("Login response: ", data);
-            
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user));
                 localStorage.setItem("token", data.token);
@@ -45,7 +44,8 @@ export const LoginView = ({ onLoggedIn }) => {
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    required 
+                    required
+                    minLength="3" 
                 />
             </label>
             <label>

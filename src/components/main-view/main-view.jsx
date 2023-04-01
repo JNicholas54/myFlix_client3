@@ -6,7 +6,6 @@ import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { SignupView } from "../signup-view/signup-view";
-import PropTypes from "prop-types"; //as props transmit data between components, proptypes validates the data types based on the apps config
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -15,6 +14,7 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser? storedUser : null);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [token, setToken] = useState(storedToken? storedToken : null);
+    
 
     useEffect(() => {
       if (!token) return;
