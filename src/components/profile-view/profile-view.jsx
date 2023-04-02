@@ -1,14 +1,47 @@
 import { Card, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
 
-export const ProfileView = ({ user }) => {
+export const ProfileView = ({ user, token }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+    const [birthday, setBirthday] = useState("");
 
     const handleSubmit = event => {
-        return;
+        event.preventDefault();
+
+        const data = {
+            username,
+            password,
+            email,
+            birthday
+        }
+        fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}", {
+            method: "PUT",
+            body: JSON.stringify(data),
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert("Changing user data failed");
+                return false;
+            }
+        })
+        .then(user => {
+            if (user) {
+                alert("Successfully changed userdata");
+                localStorage.setItem("user", JSON.stringify(user));
+                window.location.reload();
+            }
+        })
+        .catch(e => {
+            alert(e);
+        });
     }
 
     return (
@@ -19,7 +52,7 @@ export const ProfileView = ({ user }) => {
                         <Card.Title>Your info</Card.Title>
                         <p>Username: {user.username}</p>
                         <p>Email: {user.email}</p>
-                        <p>Birthdate: {user.birthdate.slice(0, 10)}</p>
+                        <p>Birthday: {user.birthday.slice(0, 10)}</p>
                     </Card.Body>
                 </Card>
             </Col>
@@ -61,11 +94,11 @@ export const ProfileView = ({ user }) => {
                                 />
                             </Form.Group>
                             <Form.Group>
-                                <Form.Label>Birthdate:</Form.Label>
+                                <Form.Label>Birthday:</Form.Label>
                                 <Form.Control
                                     type="date"
-                                    value={birthdate}
-                                    onChange={e => setBirthdate(e.target.value)}
+                                    value={birthday}
+                                    onChange={e => setBirthday(e.target.value)}
                                     required
                                     className="bg-light"
                                 />

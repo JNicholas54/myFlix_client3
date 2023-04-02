@@ -1,8 +1,16 @@
+import PropTypes from "prop-types";
+import { Button, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router"
+import { MovieCard } from "../movie-card/movie-card";
+
 import "./movie-view.scss";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movie }) => {
     const { Name, Bio, dob } = movie.Director;
     const { Name: genreName, Description } = movie.Genre;
+    const movie = movie.find(m => m.id === movieId);
+    const similarMovies = movie.filter(movie => movie.genre === movie.genre ? true : false)
 
     return (
         <div>
@@ -34,3 +42,13 @@ export const MovieView = ({ movie, onBackClick }) => {
         </div>
     );
 };
+
+MovieView.propTyoes = {
+    movies: PropTypes.arrayof(PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        Title: PropTypes.string.isRequired,
+        Director: PropTypes.string.isRequired,
+        Genre: PropTypes.string.isRequired,
+        ImgURL: PropTypes.string.isRequired
+    }))
+}
