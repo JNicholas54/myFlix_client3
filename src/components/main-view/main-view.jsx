@@ -1,19 +1,22 @@
-import React from "react";
 import { useState } from "react"; // useState is a hook that allows you to add a state variable to your component
 import { useEffect } from "react"; // useEffect is a hook that runs a callback function when any of its dependencies change
 import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { SignupView } from "../signup-view/signup-view";
+import { ProfileView } from "../profile-view/profile-view";
+import { Navbar } from "react-bootstrap";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-    const [user, setUser] = useState(storedUser? storedUser : null);
+    const [user, setUser] = useState(storedUser? JSON.parse(storedUser) : null);
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [token, setToken] = useState(storedToken? storedToken : null);
 
@@ -31,96 +34,103 @@ export const MainView = () => {
     }, [token]); // the array here is called a dependency array which is an array that contains the state variables or functions which are keeping an eye for any changes
 
     return (
-      <Row className="justify-content-md-center">
-        {!user ? (
-          <Col md={5}>
-              Login:
-            <LoginView 
-              onLoggedIn={(user, token) => {
-                setUser(user);
-                setToken(token);
-              }} 
+      <BrowserRouter>
+            <Navbar
+                user={user}
+                onLoggedOut={() => {
+                    setUser(null);
+                    setToken(null);
+                    localStorage.clear();
+                }}
             />
-            <hr></hr>
-            OR
-            <hr></hr>
-            Register:
-            <SignupView />
-          </Col>
-        ) : selectedMovie ? (
-          <Col md={8}>
-            <MovieView
-              movie={selectedMovie}
-              onBackClick={() => setSelectedMovie(null)}
-            />
-          </Col>
-        ) : movies.length === 0 ? (
-          <div>The list is empty!</div>
-        ) : (
-          <>
-            {movies.map((movie) => (
-              <Col className="mb-5" key={movie._id} md={3}>
-                <MovieCard
-                  movie={movie}
-                  onMovieClick={(newSelectedMovie) => {
-                    setSelectedMovie(newSelectedMovie);
-                  }}
-                />
-              </Col>
-            ))}
-          </>
-        )}
-        <Button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</Button>
-      </Row>
+            <Row className="justify-content-center">
+                <Routes>
+                    <Route
+                        path="/signup"
+                        element={
+                            <>
+                                {user ? (
+                                    <Navigate to="/" />
+                                ) : (
+                                    <Col md={6}>
+                                        <SignupView />
+                                    </Col>
+                                )}
+                            </>
+                        }                    
+                    />
+                    <Route
+                        path="/login"
+                        element={
+                            <>
+                                {user ? (
+                                    <Navigate to="/" />
+                                ) : (
+                                    <Col md={6}>
+                                        <LoginView
+                                            onLoggedIn={(user, token) => {
+                                                setUser(user);
+                                                setToken(token);
+                                            }}
+                                        />
+                                    </Col>
+                                )}
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/profile"
+                        element={
+                            !user ? (
+                                <Navigate to="/login" replace />
+                            ) : (
+                                <ProfileView user={user} />
+                            )
+                        }
+                    />
+                    <Route
+                        path="/movies/:movieId"
+                        element={
+                            <>
+                                {!user ? (
+                                    <Navigate to="/login" replace />
+                                ) : movies.length === 0 ? ( 
+                                    <Col>The list is empty</Col>
+                                ) : (
+                                    <MovieView movies={movies} />
+                                )}
+                            </>
+                        }
+                    />
+                    <Route
+                        path="/"
+                        element={
+                            <>
+                                {!user ? (
+                                    <Navigate to="/login" replace />
+                                ) : movies.length === 0 ? ( 
+                                    <Col>The list is empty</Col>
+                                ) : (
+                                    <>
+                                        {movies.map(movie => (
+                                            <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                                                <MovieCard movie={movie} />
+                                            </Col>
+                                        ))}
+                                    </>
+                                )}
+                            </>
+                        }
+                    />
+                </Routes>
+            </Row>
+        </BrowserRouter>
     );
-  };
+};
 
-//     if (!user) {
-//       return (
-//         <>
-//         Login:
-//           <LoginView 
-//             onLoggedIn={(user, token) => {
-//               setUser(user);
-//               setToken(token);
-//             }} 
-//           />
-//           <hr></hr>
-//           OR
-//           <hr></hr>
-//           Register:
-//           <SignupView />
-//         </>
-//         );
-//       }
 
-//     if(selectedMovie) {
-//         return (
-//             <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-//         );
-//     }
 
-//     if (movies.length === 0) {
-//         return <div>This list is empty!</div>;
-//     }
-
-//     return (
-//         <div>
-//             {movies.map((movie) => (
-//                 <MovieCard
-//                     key={movie._id}
-//                     movie={movie} // the left most movie is the name of the prop
-//                     onMovieClick={(newSelectedMovie) => {
-//                         setSelectedMovie(newSelectedMovie);
-//                     }}
-//                 />
-//             ))}
-//         <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>   
-//         </div>
-//     );
-// };
-
-//============================ BELOW ARE THE MOVIES AND USERS FROM MY DATABASE ============================
+{//============================ BELOW ARE THE MOVIES AND USERS FROM MY DATABASE ============================
 
     // ============================================ MOVIES ====================================================
 /* {
@@ -336,4 +346,4 @@ export const MainView = () => {
     __v: 0
   }
 ]
-*/
+*/}
