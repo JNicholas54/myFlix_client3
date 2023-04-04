@@ -24,7 +24,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     }, [movieId])
 
     const addFavorite = () => {
-        fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}/movies/${movieId}", {
+        fetch(`https://guarded-wave-99547.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -49,7 +49,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     }
 
     const removeFavorite = () => {
-        fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}/movies/${movieId}", {
+        fetch(`https://guarded-wave-99547.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })

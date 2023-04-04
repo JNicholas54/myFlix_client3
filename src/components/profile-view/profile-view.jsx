@@ -20,7 +20,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
             birthday
         }
 
-        fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}", {
+        fetch(`https://guarded-wave-99547.herokuapp.com/users/${user.username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
@@ -50,7 +50,7 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     // 
         const deleteAccount = () => {
             console.log("doin")
-            fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}", {     
+            fetch(`https://guarded-wave-99547.herokuapp.com/users/${user.username}`, {     
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` }
             })
