@@ -16,13 +16,6 @@ export const MovieCard = ({ movie }) => {
                 </Link>
             </Card.Body>
         </Card>
-        // <div
-        //     onClick={() => {
-        //         onMovieClick(movie);
-        //     }}
-        // >
-        //     {movie.Title}
-        // </div>
     );
 };
 // Here is where I define all the props constraints for the MovieCard

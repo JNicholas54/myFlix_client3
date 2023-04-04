@@ -1,11 +1,14 @@
 import { Card, Col, Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ user, token }) => {
+export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
+
+    let favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie._id));
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -16,6 +19,7 @@ export const ProfileView = ({ user, token }) => {
             email,
             birthday
         }
+        
         fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}", {
             method: "PUT",
             body: JSON.stringify(data),
@@ -35,14 +39,33 @@ export const ProfileView = ({ user, token }) => {
         .then(user => {
             if (user) {
                 alert("Successfully changed userdata");
-                localStorage.setItem("user", JSON.stringify(user));
-                window.location.reload();
+                updateUser(user);
             }
         })
         .catch(e => {
             alert(e);
         });
     }
+
+    // 
+        const deleteAccount = () => {
+            console.log("doin")
+            fetch("https://guarded-wave-99547.herokuapp.com/users/${user.username}", {     
+                method: "DELETE",
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Your account has been deleted. Good Bye!");
+                    onLoggedOut();
+                } else {
+                    alert("Could not delete account");
+                }
+            })
+            .catch(e => {
+                alert(e);
+            });
+        }
 
     return (
         <>
@@ -52,10 +75,14 @@ export const ProfileView = ({ user, token }) => {
                         <Card.Title>Your info</Card.Title>
                         <p>Username: {user.Username}</p>
                         <p>Email: {user.Email}</p>
-                        <p>Birthday: {user.Birthday}</p>
+                        <p>Birthday: {new Date(user.Birthday).toLocaleDateString()}</p>
                     </Card.Body>
                 </Card>
+                <Button variant="danger" onClick={() => {
+                    if (confirm("Are you sure?")) {
+                        deleteAccount();}}}>Delete user account</Button>
             </Col>
+
             <Col md={6}>
                 <Card className="mt-2 mb-3">
                     <Card.Body>
