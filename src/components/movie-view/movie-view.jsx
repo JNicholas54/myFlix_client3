@@ -102,23 +102,16 @@ MovieView.propTypes = {
     movies: PropTypes.arrayOf(PropTypes.shape({
       _id: PropTypes.string.isRequired,
       Title: PropTypes.string.isRequired,
-      Story: PropTypes.string.isRequired,
-      ImgURL: PropTypes.string.isRequired,
+      Story: PropTypes.string,
+      ImgURL: PropTypes.string,
       Genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired
+        Name: PropTypes.string,
+        Description: PropTypes.string
       }).isRequired,
       Director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-        Bio: PropTypes.string.isRequired,
-        dob: PropTypes.string.isRequired
+        Name: PropTypes.string,
+        Bio: PropTypes.string,
+        dob: PropTypes.string
       }).isRequired
-    })).isRequired,
-    user: PropTypes.shape({
-      username: PropTypes.string.isRequired,
-      favoriteMovies: PropTypes.arrayOf(PropTypes.string).isRequired
-    }).isRequired,
-    token: PropTypes.string.isRequired,
-    updateUser: PropTypes.func.isRequired
-  };
+    }))}.isRequired
   
