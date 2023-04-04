@@ -8,7 +8,8 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
     const [email, setEmail] = useState("");
     const [birthday, setBirthday] = useState("");
 
-    const favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie._id));
+    //const favoriteMovies = movies.filter(movie => user.favoriteMovies.includes(movie._id));
+    const favoriteMovies = movies && user && user.favoriteMovies ? movies.filter(movie => user.favoriteMovies.includes(movie._id)) : [];
 
     const handleSubmit = event => {
         event.preventDefault();
@@ -136,10 +137,10 @@ export const ProfileView = ({ user, token, movies, onLoggedOut, updateUser }) =>
                 </Card>
              </Col>
             <Col md={12}>
-                <h3 className="mt-3 mb-3 text-light">Your favorite movies:</h3>
+                <h3 className="mt-3 mb-3 text-dark">Favorite Movies:</h3>
             </Col>
             {favoriteMovies.map(movie => (
-                <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
+                <Col className="mb-4" key={movie._id} xl={2} lg={3} md={4} xs={6}>
                     <MovieCard movie={movie} />
                 </Col>
             ))}
