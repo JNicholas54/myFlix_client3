@@ -50,9 +50,9 @@ export const ProfileView = ({ user, token }) => {
                 <Card className="mt-2 mb-3">
                     <Card.Body>
                         <Card.Title>Your info</Card.Title>
-                        <p>Username: {user.username}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Birthday: {user.birthday.slice(0, 10)}</p>
+                        <p>Username: {user.Username}</p>
+                        <p>Email: {user.Email}</p>
+                        <p>Birthday: {user.Birthday}</p>
                     </Card.Body>
                 </Card>
             </Col>

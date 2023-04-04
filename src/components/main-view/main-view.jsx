@@ -14,7 +14,7 @@ export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = useState([]);
-    const [user, setUser] = useState(storedUser? JSON.parse(storedUser) : null);
+    const [user, setUser] = useState(storedUser? (storedUser) : null);
     const [token, setToken] = useState(storedToken? storedToken : null);
     const [viewMovies, setViewMovies] = useState(movies);
 
@@ -42,7 +42,7 @@ export const MainView = () => {
 
     return (
       <BrowserRouter>
-        <Navbar
+        <NavigationBar
             user={user}
             onLoggedOut={() => {
                 setUser(null);

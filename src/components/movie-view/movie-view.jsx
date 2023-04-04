@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import React from "react";
 import { Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router"
@@ -6,49 +6,29 @@ import { MovieCard } from "../movie-card/movie-card";
 
 import "./movie-view.scss";
 
-export const MovieView = ({ movie }) => {
+export const MovieView = ({ movies }) => {
+    const { movieId } = useParams();
+    const movie = movies.find(m => m._id === movieId);
     const { Name, Bio, dob } = movie.Director;
     const { Name: genreName, Description } = movie.Genre;
-    const movie = movie.find(m => m.id === movieId);
-    const similarMovies = movie.filter(movie => movie.genre === movie.genre ? true : false)
-
+    
     return (
-        <div>
-            <div>
-                <img src={movie.ImgURL} alt="" className="w-100" />
-            </div>
-
-            <div>
-                <span>Title: <strong>{movie.Title}</strong></span>
-            </div>
-            <br></br>
-
-            <div>
-                <span>Director: <strong>{Name}</strong></span>
-                <div>
+        <>
+        <Col md={12}>
+            <div className="text-dark">
+                <img className="w-auto" src={movie.ImgURL} alt="Movie Cover Image" />
+                <h2>{movie.Title}</h2>
+                    <p>{movie.Story}</p>
+                <h5>Genre: <strong>{genreName}</strong></h5>
+                    <p>{Description}</p>
+                <h5>Director: <strong>{Name}</strong></h5>
                     <p>{Bio}</p>
                     <p>Born: <strong>{dob}</strong></p>
-                </div>
+                <Link to={"/"}>
+                    <Button variant="primary" style={{ cursor: "pointer" }}>Back</Button>
+                </Link>
             </div>
-
-            <div>
-                <span>Genre: <strong>{genreName}</strong></span>
-                <div>
-                    <p>{Description}</p>
-                </div>
-            </div>
-            
-            <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back</button>
-        </div>
+        </Col> 
+        </>
     );
 };
-
-MovieView.propTyoes = {
-    movies: PropTypes.arrayof(PropTypes.shape({
-        _id: PropTypes.string.isRequired,
-        Title: PropTypes.string.isRequired,
-        Director: PropTypes.string.isRequired,
-        Genre: PropTypes.string.isRequired,
-        ImgURL: PropTypes.string.isRequired
-    }))
-}
