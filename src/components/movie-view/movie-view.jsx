@@ -25,7 +25,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
     const addFavorite = () => {
         fetch(`https://guarded-wave-99547.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
-            method: "POST",
+            method: "PUT",
             headers: { Authorization: `Bearer ${token}` }
         })
         .then(response => {
