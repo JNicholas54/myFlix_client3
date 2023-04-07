@@ -13,4 +13,4 @@ You can register an account, login, modify your account details, delete your acc
 
 ## Link to the live version
 
-The online hosted version of this app can be found here: [Will be updated later](#)
+The online hosted version of this app can be found here: [https://myflixnchill.netlify.app/](#)
